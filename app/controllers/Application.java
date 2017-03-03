@@ -23,13 +23,13 @@ public class Application extends Controller {
     private TaskPersistenceService taskPersist;
 
     public Result index() {
-        return ok(index.render("hello, world", Form.form(TaskForm.class)));
+        return ok(index.render("Hogwarts", Form.form(TaskForm.class)));
     }
 
     public Result addTask() {
         Form<TaskForm> form = Form.form(TaskForm.class).bindFromRequest();
         if (form.hasErrors()) {
-            return badRequest(index.render("hello, world", form));
+            return badRequest(index.render("Hogwarts", form));
         }
 
         Task task = new Task();
