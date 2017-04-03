@@ -8,7 +8,6 @@
 <head>
 <script>
 function postmessage() {
-	string myColor;  
 	var houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
 	  var house = houses[Math.floor(Math.random() * houses.length)];
 	  document.getElementById("myHouse").textContent = "Your sorted house is " + house;
@@ -26,4 +25,5 @@ function postmessage() {
 <input type="button" value="Get Sorted" onclick="postmessage();" />
 <div id="myHouse"></div>
 </body>
+
 }
