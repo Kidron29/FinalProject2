@@ -2,6 +2,7 @@ package configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -20,14 +21,14 @@ public class DataConfig {
 
     @Bean
     public EntityManagerFactory entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setShowSql(false);
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setDatabase(Database.MYSQL);
+        HibernateJpaVendorAdapter hibernateAdapter = new HibernateJpaVendorAdapter();
+        hibernateAdapter.setShowSql(false);
+        hibernateAdapter.setGenerateDdl(true);
+        hibernateAdapter.setDatabase(Database.MYSQL);
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setPackagesToScan("jpa");
-        entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactory.setPackagesToScan("models");
+        entityManagerFactory.setJpaVendorAdapter(hibernateAdapter);
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.afterPropertiesSet();
         return entityManagerFactory.getObject();
@@ -43,4 +44,17 @@ public class DataConfig {
         // Return the datasource from the play framework.
         return DB.getDataSource();
     }
+    /*
+    @Bean
+    public DataSource dataSource() {
+        // Return the datasource from the play framework.
+    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	play.Configuration conf = Play.application().configuration();
+    	dataSource.setDriverClassName(conf.getString("db.default.driver"));
+        dataSource.setUrl(conf.getString("db.default.url"));
+        dataSource.setUsername(conf.getString("db.default.user"));
+        dataSource.setPassword(conf.getString("db.default.password"));
+        return dataSource();
+        //https://github.com/SocialFinance/userLogin_HelloWorld
+    }*/
 }

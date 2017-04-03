@@ -1,29 +1,20 @@
-@(message: String, taskForm: Form[TaskForm])
+@import jpa.UserForm
+@(message: String, userForm: Form[UserForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
-@main("Ahhhhh") {
+@main("User", message, userForm) {
 
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-				
-                <a id="titleLink" class="brand" href="/">@message.toUpperCase</a>
-            </div>
-        </div>
-    </div>
-	
-	
-<div class="container">
-        <ul id="tasks"></ul>
 
-        @helper.form(action = routes.Application.addTask(), 'class -> "well form-horizontal") {
-            @helper.inputText(taskForm("contents"), '_label -> "Contents")
-            <div class="controls">
-			    
-                <input type="Submit" class="btn btn-primary" placeholder="Search"/>
-            </div>
-        }
-    <a href="/"
-</div>
+
+    <h3>Get Sorted into a House!</h3>
+
+    <form>
+        <a href="http://bfy.tw/9k4w" class="btn btn-info" role="button">Go, be free!</a>
+    </form>
+    
 }
+
+
+
+
 

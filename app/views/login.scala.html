@@ -2,18 +2,16 @@
 @(message: String, userForm: Form[UserForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
-@main("Welcome to User Login", message, userForm) {
+@main("Welcome to Play 2.0", message, userForm) {
 
     <h3>User Login</h3>
-
-    <label>Please log in or create a new user account.</label>
     @helper.form(action = routes.CrudController.login(), 'class -> "well form-horizontal") {
         @helper.inputText(userForm("name"), '_label -> "Name")
         @helper.inputText(userForm("password"), '_label -> "Password")
-
         <div class="controls">
             <input type="submit" class="btn btn-primary"/>
-            <a href="addUser" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Create Account</a>
+            <a href="addUser" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">
+                Create Account</a>
         </div>
 
     }

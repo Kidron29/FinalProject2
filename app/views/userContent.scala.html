@@ -1,0 +1,29 @@
+@import jpa.UserForm
+@(message: String, userForm: Form[UserForm])
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+@main("User", message, userForm) {
+
+    
+<head>
+<script>
+function postmessage() {
+	string myColor;  
+	var houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
+	  var house = houses[Math.floor(Math.random() * houses.length)];
+	  document.getElementById("myHouse").textContent = "Your sorted house is " + house;
+	};
+
+
+</script>
+
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+
+<body>
+<input type="button" value="Get Sorted" onclick="postmessage();" />
+<div id="myHouse"></div>
+</body>
+}

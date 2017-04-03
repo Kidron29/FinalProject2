@@ -1,0 +1,16 @@
+@import jpa.UserForm
+@import helper.inputText
+@(message: String, userForm: Form[UserForm])
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+@main("User", message, userForm) {
+
+    <h3>Create New User Account</h3>
+    @helper.form(action = routes.CrudController.addUser(), 'class -> "well form-horizontal") {
+        @inputText(userForm("name"), '_label -> "Name")
+        @inputText(userForm("password"), '_label -> "Password")
+        <div class="controls">
+            <input type="submit" class="btn btn-primary"/>
+        </div>
+    }
+}
