@@ -1,0 +1,43 @@
+									Documentation
+									  Hogwarts 
+						-------------------------------------
+										Scope:
+	We were tasked with creating a web application to do a simple task.  We chose to create
+	a Hogwarts app.  In this application we have you create a user and use two buttons to randomly 
+	generate which house you are in and what professor was your favorite.  This was done using 
+	scala,Hibernate, spring and java. Spring and Hibernate allowed us to persist to a database 
+	that we created using basic sql functions. Our table has two fields, username and password.
+	Github was used to save versions of the project so that if needed you can reload previous versions.
+	
+						--------------------------------------
+										Technology
+	Java JDK-http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+	Git-https://git-scm.com/
+	Play Framework-Activator 1.3.12 including Play 2.5.1
+	Scala-IDE-http://scala-ide.org/
+	
+						--------------------------------------	
+										Struggles
+										
+	Our first struggle was committing.  We committed so rarely or there was so much time in between working
+	and committing that we forgot the commands.  We had to keep pulling up the PowerPoints.  The next struggle
+	we had was with the JUnit testing.  We first struggled with making the imports work.  We first referenced 
+	Nate's imports then we saw we needed to fix our dependencies.  Communication was honestly the worst our biggest
+	struggle.  Kidron's phone broke and her Facebook messages werern't getting through.  While she is Facebook
+	messaging me I was emailing her which she didn't see.  We didn't communicate until I Facebooked her and the 
+	message got through.
+
+						--------------------------------------
+									Classes & Methods
+									
+	So we start with the index page.scala.html. When you click either the login or create user buttons, the routes file 
+	defines which classes and which methods are run. Add user and login methods are in the crudController class that we based 
+	off of https://github.com/SocialFinance/userLogin_HelloWorld's primary controller class. Add user method has an if else
+	that runs userServiceImpl.save(), which will run some basic testing checks to make sure that 
+		1.) User does not already exist
+		2.) The person didn't input a null value
+		3.) That User does not already exist in the database. 
+	After you successfully login, and the username and password are for sure in the database, then the routes file will redirect to the 
+	userContent.scala.html. Here, you can click buttons are recieve random string's on the window screen. UserForm and User is where 
+	we define the two fields in the database to be userName and password. 
+												

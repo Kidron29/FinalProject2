@@ -1,4 +1,6 @@
 @import jpa.UserForm
+@import helper.inputText
+@import helper.inputPassword
 @(message: String, userForm: Form[UserForm])
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
@@ -7,7 +9,7 @@
     <h3>User Login</h3>
     @helper.form(action = routes.CrudController.login(), 'class -> "well form-horizontal") {
         @helper.inputText(userForm("name"), '_label -> "Name")
-        @helper.inputText(userForm("password"), '_label -> "Password")
+        @helper.inputPassword(userForm("password"), '_label -> "Password")
         <div class="controls">
             <input type="submit" class="btn btn-primary"/>
             <a href="addUser" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">

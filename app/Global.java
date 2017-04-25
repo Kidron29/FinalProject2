@@ -1,9 +1,8 @@
-import configs.AppConfig;
-import configs.DataConfig;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import conf.AppConfig;
+import conf.DataConfig;
 import play.Application;
 import play.GlobalSettings;
 

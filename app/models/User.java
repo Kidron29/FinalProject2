@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity //means we are using Spring to work w/ database
 @Table(name = "user")
 public class User {
 
-	
+	//fields in our table are name and password--need to be the same as the fields in UserForm
     @Id
     @Column(name = "name", nullable = false, unique = true)
     @Required

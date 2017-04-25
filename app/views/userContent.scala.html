@@ -11,19 +11,25 @@ function postmessage() {
 	var houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
 	  var house = houses[Math.floor(Math.random() * houses.length)];
 	  document.getElementById("myHouse").textContent = "Your sorted house is " + house;
-	};
+} 
+	 function postSecondMessage() {
+			var profs = ["Snape", "Hagrid", "Dumbledore", "Sprout", "McGonagall", "Lockhart", "Flitwick", "Lupin", "Mad Eye Moody"];
+			  var prof = profs[Math.floor(Math.random() * profs.length)];
+			  document.getElementById("favProf").textContent = "Your favorite professor is " + prof;
+			};
+
+	</script>
+
+	<meta charset="UTF-8">
+	<title>Untitled Document</title>
+	</head>
 
 
-</script>
+	<body>
+	<input type="button" value="Get Sorted" onclick="postmessage();" />
+	<div id="myHouse"></div>
+	<input type="button" value="Pick Fav Professor" onclick="postSecondMessage();" />
+	<div id="favProf"></div>
+	</body>
 
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-</head>
-
-
-<body>
-<input type="button" value="Get Sorted" onclick="postmessage();" />
-<div id="myHouse"></div>
-</body>
-
-}
+	}

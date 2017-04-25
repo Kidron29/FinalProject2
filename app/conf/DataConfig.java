@@ -1,5 +1,5 @@
-package configs;
-
+package conf;
+// code basically very similiar to Nate's that we used during midterms     https://github.com/YogoGit
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class DataConfig {
 
-    @Bean
+    @Bean //using hibernate
     public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter hibernateAdapter = new HibernateJpaVendorAdapter();
         hibernateAdapter.setShowSql(false);
@@ -44,17 +44,4 @@ public class DataConfig {
         // Return the datasource from the play framework.
         return DB.getDataSource();
     }
-    /*
-    @Bean
-    public DataSource dataSource() {
-        // Return the datasource from the play framework.
-    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    	play.Configuration conf = Play.application().configuration();
-    	dataSource.setDriverClassName(conf.getString("db.default.driver"));
-        dataSource.setUrl(conf.getString("db.default.url"));
-        dataSource.setUsername(conf.getString("db.default.user"));
-        dataSource.setPassword(conf.getString("db.default.password"));
-        return dataSource();
-        //https://github.com/SocialFinance/userLogin_HelloWorld
-    }*/
 }
