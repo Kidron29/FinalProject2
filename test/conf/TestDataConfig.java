@@ -25,12 +25,12 @@ public class TestDataConfig {
     @Bean
     public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setShowSql(false);
+        vendorAdapter.setShowSql(true);
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setDatabase(Database.H2);
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setPackagesToScan("jpa");
+        entityManagerFactory.setPackagesToScan("models");
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.afterPropertiesSet();
