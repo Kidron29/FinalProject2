@@ -9,6 +9,10 @@ package jpa;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,26 +25,19 @@ import services.UserService;
 @ContextConfiguration(classes = {AppConfig.class, TestDataConfig.class})
 public class FormsTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-	@Autowired
+	@Inject
 	private UserService userService;
-	
 	
     @Test
     public void testDuplicateUserName () {
-    	User user = new User();
-    	user.setName("User w/o password");
-    	user.setPassword("ValidPass");
-    	userService.save(user);
-    	
-    	User user2 = new User();
-    	user2.setName("User w/o password");
-    	user2.setPassword("ValidPass2");
-    	try{
-    		userService.save(user2);
-    		fail();
-    	} catch (javax.persistence.PersistenceException ignored) {
-    		
-    	}
+    	User t = new User();
+        t.setName("contents");
+        t.setPassword("password");
+        userService.save(t);        
+        User user2 = new User();
+        user2.setName("contents");
+        user2.setPassword("validPass");
+        userService.save(user2);
+        assertFalse("Can't duplicate", userService.save(user2));
     }
-
 }

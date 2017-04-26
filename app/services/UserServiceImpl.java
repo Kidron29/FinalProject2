@@ -4,7 +4,7 @@
  * Date:    1/26/17
  */
 
-package services.impl;
+package services;
 
 import models.User;
 import models.enums;
@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jpa.UserForm;
 import services.UserService;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,16 +34,15 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Boolean save(User user) {
-    	Form<UserForm> form = Form.form(UserForm.class).bindFromRequest();
-    	UserForm userForm = form.get();
-        try {
+        try {      	
             log.debug("User save() was called.");
             if (user.getName() != null && user.getPassword() != null) { 					//as long as name and password aren't null ...
-                User userFromDB = em.find(User.class, user.getName());						//create User instance which = the User em finds based on the name of the passed in user instance
-                if (userFromDB != null && userFromDB.getName().equals(user.getName())) {	//if that user exists and ... then cannot create
+                List<User> userFromDB = em.createQuery("From User u WHERE u.name = :setName", User.class)
+                		.setParameter("setName", user.getName())
+                		.getResultList();                                                   //create User instance which = the User em finds based on the name of the passed in user instance
+                if (userFromDB != null && userFromDB.size() > 0) {	//if that user exists and ... then cannot create
                     // user exists in database
                     log.debug("User exists in the database, save failed.");					//error message
-                    form.reject("User exists in the database");
                     return false;
                 } else {																	//passed in user does not exist 
                     // Add new user to the database
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
             }
         } catch(Exception e) {
             log.debug("Exception caught in save(), save failed.");				
-            return true;
+            return false;
         }
     }
 
@@ -73,5 +74,10 @@ public class UserServiceImpl implements UserService {
             log.debug("User login success!");
             return enums.LOGIN_CODE.SUCCESS;
         }
+    }
+    
+    @Override
+    public List<User> fetchAllUsers() {
+        return em.createQuery("from User", User.class).getResultList();
     }
 }

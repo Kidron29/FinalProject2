@@ -6,6 +6,8 @@
 
 package services;
 
+import java.util.List;
+
 import models.User;
 import models.enums;
 
@@ -26,4 +28,6 @@ public interface UserService {
      */
     enums.LOGIN_CODE login(User user);
 
+    List<User> fetchAllUsers();
+    
 }
