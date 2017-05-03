@@ -30,4 +30,6 @@ public interface UserService {
 
     List<User> fetchAllUsers();
     
+    List<User> getUserForName(String userName);
+    
 }

@@ -1,8 +1,3 @@
-/**
- * File:    UserServiceImpl.java
- * Author:  rmoon
- * Date:    1/26/17
- */
 
 package services;
 
@@ -71,7 +66,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public enums.LOGIN_CODE login(User user) {
         log.debug("User login() was called.");
+        if (user == null) {
+        	return enums.LOGIN_CODE.NULL_FAIL;
+        } else if(user.getName()==null) {
+        	return enums.LOGIN_CODE.NAME_FAIL;
+        } 
         User userFromDB = em.find(User.class, user.getName());
+        
         if (userFromDB == null) {
             log.debug("User not found in database, login failed.");
             return enums.LOGIN_CODE.NAME_FAIL;
@@ -80,6 +81,7 @@ public class UserServiceImpl implements UserService {
             return enums.LOGIN_CODE.PASS_FAIL;
         } else {
             log.debug("User login success!");
+            System.out.println(enums.LOGIN_CODE.SUCCESS);
             return enums.LOGIN_CODE.SUCCESS;
         }
     }
@@ -89,7 +91,8 @@ public class UserServiceImpl implements UserService {
         return em.createQuery("from User", User.class).getResultList();
     }
     
-    private List<User> getUserForName(String userName) {
+    @Override
+    public List<User> getUserForName(String userName) {
     	return em.createQuery("FROM User u WHERE u.name = :setName", User.class)
 		.setParameter("setName", userName)
 		.getResultList();
